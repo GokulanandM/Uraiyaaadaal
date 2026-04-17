@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLUENT | Live AI</title>
+    <link rel="stylesheet" href="/static/css/live_ai.css">
+</head>
+
+<body>
+    <div class="glow-bg"></div>
+
+    <div class="app-container">
+
+        <!-- Avatar -->
+        <div class="avatar-container" id="avatar-container">
+            <div class="ai-orbit">
+                <div class="orbit-ring"></div>
+                <div class="orbit-ring"></div>
+            </div>
+
+            <div class="avatar-sphere" id="avatar">
+                <div class="inner-glow"></div>
+
+                <div class="voice-bars">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <div class="status-pill" id="status">Idle</div>
+        </div>
+
+        <!-- Chat -->
+        <div class="chat-overlay">
+            <div class="message-box bot">
+                <label>Transcript</label>
+                <p id="transcript">Waiting for you to speak...</p>
+            </div>
+
+            <div class="message-box user">
+                <label>Coimbatore Slang</label>
+                <p id="slang">-</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls-area">
+            <button id="micBtn" class="mic-btn" onclick="toggleMic()">
+                <div class="mic-icon">🎙️</div>
+                <div class="pulse-rings"></div>
+            </button>
+            <p class="instruction">Tap the mic to talk to FLUENT</p>
+        </div>
+    </div>
+
+    <audio id="audio" style="display:none"></audio>
+
+    <script>
+        let recorder;
+        let chunks = [];
+        let isRecording = false;
+        let streamRef = null;
+
+        const avatar = document.getElementById("avatar-container");
+        const status = document.getElementById("status");
+        const micBtn = document.getElementById("micBtn");
+
+        // =========================
+        // RESET UI (IMPORTANT FIX)
+        // =========================
+        function resetUI() {
+            document.getElementById("transcript").innerText = "Waiting for you to speak...";
+            document.getElementById("slang").innerText = "-";
+
+            const audio = document.getElementById("audio");
+            audio.pause();
+            audio.src = "";
+
+            avatar.className = "avatar-container";
+            status.innerText = "Idle";
+        }
+
+        // =========================
+        // MIC TOGGLE
+        // =========================
+        async function toggleMic() {
+            if (!isRecording) {
+                resetUI();   // 🔥 reset every session
+                startMic();
+            } else {
+                stopMic();
+            }
+        }
+
+        // =========================
+        // START MIC
+        // =========================
+        async function startMic() {
+            try {
+                streamRef = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+                recorder = new MediaRecorder(streamRef);
+                recorder.start();
+
+                isRecording = true;
+                chunks = [];
+
+                avatar.className = "avatar-container recording";
+                status.innerText = "Listening...";
+                micBtn.classList.add("active");
+
+                recorder.ondataavailable = (e) => {
+                    chunks.push(e.data);
+                };
+
+            } catch (err) {
+                alert("Mic permission error: " + err);
+            }
+        }
+
+        // =========================
+        // STOP MIC + SEND TO BACKEND
+        // =========================
+        function stopMic() {
+            if (!recorder) return;
+
+            recorder.stop();
+            isRecording = false;
+
+            avatar.className = "avatar-container processing";
+            status.innerText = "Thinking...";
+            micBtn.classList.remove("active");
+
+            recorder.onstop = async () => {
+
+                // stop mic stream
+                if (streamRef) {
+                    streamRef.getTracks().forEach(track => track.stop());
+                }
+
+                const blob = new Blob(chunks, { type: "audio/webm" });
+                const formData = new FormData();
+                formData.append("audio", blob, "voice.webm");
+
+                try {
+                    const res = await fetch("/voice_pipeline", {
+                        method: "POST",
+                        body: formData
+                    });
+
+                    const data = await res.json();
+
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+
+                    // UPDATE UI
+                    document.getElementById("transcript").innerText = data.transcript;
+                    document.getElementById("slang").innerText = data.slang;
+
+                    const audio = document.getElementById("audio");
+                    audio.src = data.audio;
+
+                    avatar.className = "avatar-container speaking";
+                    status.innerText = "Speaking...";
+
+                    audio.play();
+
+                    audio.onended = () => {
+                        avatar.className = "avatar-container";
+                        status.innerText = "Idle";
+                    };
+
+                } catch (err) {
+                    console.log(err);
+                    alert("Pipeline error");
+                }
+            };
+        }
+    </script>
+
+</body>
+</html>

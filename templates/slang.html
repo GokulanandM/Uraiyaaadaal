@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FLUENT - Slang Selection</title>
+  <link rel="stylesheet" href="/static/css/slang.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Pick Best Slang Output</h1>
+
+    <div class="card">
+      <h2>AI Reply (Generated First)</h2>
+      <pre id="reply">Loading...</pre>
+    </div>
+
+    <div class="card">
+      <h2>Generation Options</h2>
+      <div class="button-group">
+        <button onclick="loadCandidates()" class="btn-primary">Generate 5 Outputs (TinyLlama + MT5)</button>
+        <button onclick="generateGroqSlang()" class="btn-groq">Generate with Groq (Fast)</button>
+      </div>
+    </div>
+
+    <div id="candidatesSection" style="display:none;">
+      <div class="card">
+        <h2>Choose One Of 5 Outputs</h2>
+        <div id="candidateList"></div>
+        <div class="actions">
+          <button onclick="refineSelected(false)">Refine Selected</button>
+          <button onclick="refineSelected(true)">Refine + Go To TTS</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="groqSection" style="display:none;">
+      <div class="card">
+        <h2>Groq Slang Output</h2>
+        <pre id="groqOutput">Generating...</pre>
+        <div class="actions">
+          <button onclick="goToTtsWithGroq()">Go To TTS</button>
+          <button onclick="backToOptions()">Back</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="finalSection" style="display:none;">
+      <h2>Final Refined Slang</h2>
+      <pre id="final">Waiting...</pre>
+    </div>
+  </div>
+
+  <script src="/static/js/slang.js"></script>
+</body>
+</html>

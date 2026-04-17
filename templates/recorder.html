@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Studio | FLUENT</title>
+    <link rel="stylesheet" href="/static/css/recorder.css">
+</head>
+<body>
+    <!-- Background Animated Glows -->
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+
+    <nav class="navbar">
+        <div class="logo">FLUENT<span>.ai</span></div>
+        <a href="/" class="back-link">← Back to Dashboard</a>
+    </nav>
+
+    <div class="container">
+        <div class="studio-card">
+            <header class="header-content">
+                <div class="badge">Recording Studio</div>
+                <h1 class="title">FLUENT Voice Recorder</h1>
+                <p class="subtitle">Capture your Tamil audio for high-precision slang conversion.</p>
+            </header>
+
+            <!-- Visualizer Box -->
+            <div class="wave-container">
+                <div class="status-overlay">
+                    <span class="pulse"></span>
+                    <span id="status">Ready to Record</span>
+                </div>
+                <canvas id="waveform"></canvas>
+            </div>
+
+            <!-- Primary Controls -->
+            <div class="controls">
+                <button id="startBtn" class="btn btn-start">
+                    <span class="icon">🎙️</span> Start Recording
+                </button>
+                <button id="stopBtn" class="btn btn-stop">
+                    <span class="icon">⏹️</span> Stop Recording
+                </button>
+                <button id="reRecordBtn" class="btn btn-rerecord">
+                    <span class="icon">🔄</span> Re-record
+                </button>
+            </div>
+
+            <!-- Audio Playback Area -->
+            <div class="audio-player-card">
+                <p class="small-label">Preview Recording</p>
+                <audio id="audioPlayback" controls></audio>
+            </div>
+
+            <!-- Bottom Actions -->
+            <div class="actions">
+                <button id="saveBtn" class="btn-action save">
+                    Save to Cloud
+                </button>
+                <button id="nextBtn" class="btn-action proceed">
+                    Proceed to Transcription →
+                </button>
+            </div>
+
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="divider"><span>OR UPLOAD FILE</span></div>
+                <div class="upload-card" onclick="document.getElementById('fileInput').click()">
+                    <div class="upload-icon">📂</div>
+                    <div class="upload-info">
+                        <h3>Choose a .wav file</h3>
+                        <p>Select audio from your local gallery</p>
+                    </div>
+                    <input type="file" id="fileInput" accept="audio/wav" style="display: none;">
+                </div>
+                <p id="fileName" class="file-name"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/recorder.js"></script>
+</body>
+</html>
