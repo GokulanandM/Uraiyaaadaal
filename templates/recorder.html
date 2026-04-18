@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>FLUENT Voice Recorder</title>
+
+<link rel="stylesheet" href="/static/css/recorder.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 class="title">FLUENT Voice Recorder</h1>
+
+<p class="subtitle">
+Record your voice and verify before transcription
+</p>
+
+
+<div class="wave-container">
+<canvas id="waveform"></canvas>
+</div>
+
+
+<div class="controls">
+
+<button id="startBtn" class="btn start">
+Start Recording
+</button>
+
+<button id="stopBtn" class="btn stop">
+Stop Recording
+</button>
+
+<button id="reRecordBtn" class="btn rerecord">
+Re-record
+</button>
+
+</div>
+
+
+<div class="audio-player">
+
+<audio id="audioPlayback" controls></audio>
+
+</div>
+
+
+<div class="actions">
+
+<button id="saveBtn" class="btn save">
+Save Recording
+</button>
+
+<button id="nextBtn" class="btn next">
+Proceed to Transcription
+</button>
+
+</div>
+
+<div class="upload-section">
+    <div class="divider"><span>OR</span></div>
+    <div class="upload-card">
+        <h3>Upload Voice File</h3>
+        <p>Select a .wav file from your gallery</p>
+        <button id="uploadBtn" class="btn upload">Choose File</button>
+        <input type="file" id="fileInput" accept="audio/wav" style="display: none;">
+        <p id="fileName" class="file-name"></p>
+    </div>
+</div>
+
+
+<p id="status"></p>
+
+</div>
+
+<script src="/static/js/recorder.js"></script>
+
+</body>
+</html>

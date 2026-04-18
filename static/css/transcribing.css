@@ -1,0 +1,46 @@
+body{
+font-family:Segoe UI;
+background:linear-gradient(135deg,#141e30,#243b55);
+color:white;
+text-align:center;
+padding:40px;
+}
+
+.container{
+width:900px;
+max-width:90%;
+margin:auto;
+}
+
+#loader{
+border:6px solid #ccc;
+border-top:6px solid #00d2ff;
+border-radius:50%;
+width:60px;
+height:60px;
+animation:spin 1s linear infinite;
+margin:auto;
+}
+
+@keyframes spin{
+0%{transform:rotate(0deg);}
+100%{transform:rotate(360deg);}
+}
+
+.card{
+background:rgba(255,255,255,0.05);
+padding:20px;
+margin:15px 0;
+border-radius:12px;
+text-align:left;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:25px;
+background:#6f42c1;
+color:white;
+cursor:pointer;
+}

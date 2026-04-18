@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0e0b07;
+  --bg-secondary: #1a1410;
+  --bg-card: #221c14;
+  --accent-amber: #f59e0b;
+  --accent-red: #ef4444;
+  --accent-green: #10b981;
+  --text-primary: #f5f0e8;
+  --text-muted: #9c8c78;
+  --border: rgba(245, 158, 11, 0.15);
+}
+
+@layer base {
+  html {
+    @apply bg-bg-primary text-text-primary antialiased;
+  }
+  body {
+    @apply min-h-screen font-body;
+  }
+  #root {
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  }
+}
+
+/* CRT scan-line motif on cards */
+.crt-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(245, 240, 232, 0.03) 0px,
+    rgba(245, 240, 232, 0.03) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+@keyframes mic-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+.animate-mic-breathe {
+  animation: mic-breathe 2.4s ease-in-out infinite;
+}
+
+@keyframes bar-pulse {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+    opacity: 0.55;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}

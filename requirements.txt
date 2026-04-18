@@ -1,0 +1,25 @@
+# --- Web app & config ---
+flask>=3.0
+werkzeug>=3.0
+requests>=2.31
+python-dotenv>=1.0
+
+# --- Speech-to-text (model1_asr.py) ---
+# Requires FFmpeg on your PATH: e.g. Fedora `sudo dnf install ffmpeg`
+openai-whisper
+
+# --- PyTorch + Hugging Face (model3 slang, model4 TTS) ---
+# Install torch for your platform from https://pytorch.org if the default wheel fails.
+torch>=2.1.0
+transformers>=4.38.0
+accelerate>=0.27.0
+peft>=0.10.0
+bitsandbytes>=0.43.0
+scipy>=1.11.0
+numpy>=1.24.0
+sentencepiece>=0.1.99
+safetensors>=0.4.0
+
+# --- APIs (model2 tone, model3 Groq) ---
+google-generativeai>=0.8.0
+groq>=0.4.0

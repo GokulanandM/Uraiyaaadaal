@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLUENT - Text to Speech</title>
+    <link rel="stylesheet" href="/static/css/tts.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Voice Synthesis</h1>
+        
+        <div class="card">
+            <div class="pulse-glow"></div>
+            
+            <!-- Loading State -->
+            <div id="status-container" class="status-container">
+                <div id="loader" class="loader"></div>
+                <p id="status-text">Converting text to speech...</p>
+            </div>
+
+            <!-- Result State -->
+            <div id="audio-section">
+                <div class="text-preview" id="text-preview">
+                    <!-- Text will be inserted here -->
+                </div>
+                
+                <div class="audio-card">
+                    <audio id="audio-player" controls>
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn-secondary" onclick="goBack()">Back to Slang</button>
+                    <button class="btn-primary" onclick="goHome()">New Recording</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/tts.js"></script>
+</body>
+</html>

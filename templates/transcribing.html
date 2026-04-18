@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>FLUENT - Processing</title>
+<link rel="stylesheet" href="/static/css/transcribing.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Processing Audio...</h1>
+
+<div id="loader"></div>
+
+<div id="results" style="display:none;">
+
+<div class="card">
+<h3>Transcribed Text</h3>
+<p id="transcript"></p>
+</div>
+
+<div class="card">
+<h3>Language</h3>
+<p id="language"></p>
+</div>
+
+<div class="card">
+<h3>Emotion</h3>
+<p id="emotion"></p>
+</div>
+
+<div class="card">
+<h3>Tone</h3>
+<p id="tone"></p>
+</div>
+
+<div class="card">
+<h3>Reasoning</h3>
+<p id="reasoning"></p>
+</div>
+
+<div class="card">
+<h3>Analysis</h3>
+<p id="analysis"></p>
+</div>
+
+<button onclick="goNext()">Go to Slang Conversion</button>
+
+</div>
+
+</div>
+
+<script src="/static/js/transcribing.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+body{
+margin:0;
+font-family:Segoe UI;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+width:900px;
+max-width:90%;
+text-align:center;
+}
+
+h1{
+margin-bottom:30px;
+}
+
+.card{
+background:rgba(255,255,255,0.08);
+padding:25px;
+border-radius:15px;
+margin-bottom:20px;
+backdrop-filter:blur(10px);
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+h2{
+margin-bottom:10px;
+color:#00d2ff;
+}
+
+p{
+font-size:18px;
+line-height:1.6;
+}
+
+button{
+margin-top:20px;
+padding:12px 30px;
+font-size:16px;
+border:none;
+border-radius:25px;
+background:#6f42c1;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* =========================
+   OPTIONS (SLANG LIST)
+========================= */
+
+#options {
+    text-align: left;
+    margin-top: 15px;
+}
+
+/* Each option box */
+#options div {
+    background: rgba(255,255,255,0.05);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+/* Hover effect */
+#options div:hover {
+    background: rgba(0,210,255,0.2);
+}
+
+/* Radio button spacing */
+#options input[type="radio"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+/* Selected highlight */
+#options input[type="radio"]:checked + span {
+    color: #00d2ff;
+    font-weight: bold;
+}
+
+/* =========================
+   FINAL OUTPUT
+========================= */
+
+#final {
+    font-size: 20px;
+    font-weight: bold;
+    color: #00ffcc;
+}
+
+/* =========================
+   SCROLL FIX (important)
+========================= */
+
+body {
+    height: auto;
+    padding: 40px 0;
+}
+
+/* Prevent overflow issues */
+.container {
+    margin: auto;
+}
+
+
+.card {
+    border: 1px solid rgba(255,255,255,0.1);
+}
