@@ -3,6 +3,9 @@
 
 **Uraiyaaadaal** (Tamil: **உரையாடல்**) is a Flask + React (Vite) web app that turns Tamil speech into text, analyzes tone and emotion, generates Coimbatore-style slang options, and synthesizes speech again using modern AI models. Earlier codename: **FLUENT**.
 
+
+![FLUENT Demo](assets/demo.gif)
+
 ## Project overview
 
 1. **Audio recording** — Record in the browser or upload audio (e.g. `.wav` / WebM from MediaRecorder).
